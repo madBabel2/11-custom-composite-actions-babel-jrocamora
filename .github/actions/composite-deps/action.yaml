@@ -1,29 +1,31 @@
 name: Using Actions
 
-env:
-  WORK_DIR: my-app
-  NODE_VERSION: 20.x
+inputs:
+  WORK_DIR:
+    description: 'The directory where the code is located.'
+    required: true
+    default: 'my-app'
+  NODE_VERSION:
+    description: 'The version of Node.js to use.'
+    required: true
+    default: '20.x'
 
 runs:
   using: composite
   steps:
     run: 
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: ${{env.NODE_VERSION}}
+          node-version: ${{inputs.NODE_VERSION}}
 
       - name: Install Dependencies
-        working-directory: ${{env.WORK_DIR}}
+        working-directory: ${{inputs.WORK_DIR}}
         run: npm ci
         shell: bash
 
       - name: Run Unit Tests
-        working-directory: ${{env.WORK_DIR}}
+        working-directory: ${{inputs.WORK_DIR}}
         run: npm run test
         shell: bash
 
-        
