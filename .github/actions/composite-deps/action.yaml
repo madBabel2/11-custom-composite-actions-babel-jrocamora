@@ -13,19 +13,19 @@ inputs:
 runs:
   using: composite
   steps:
-    run: 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{inputs.NODE_VERSION}}
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{inputs.NODE_VERSION}}
 
-      - name: Install Dependencies
-        working-directory: ${{inputs.WORK_DIR}}
-        run: npm ci
-        shell: bash
+    - name: Install Dependencies
+      working-directory: ${{inputs.WORK_DIR}}
+      run: npm ci
+      shell: bash
 
-      - name: Run Unit Tests
-        working-directory: ${{inputs.WORK_DIR}}
-        run: npm run test
-        shell: bash
+    - name: Run Unit Tests
+      working-directory: ${{inputs.WORK_DIR}}
+      run: npm run test
+      shell: bash
 
+      
