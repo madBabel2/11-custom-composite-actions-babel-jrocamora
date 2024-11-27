@@ -1,0 +1,29 @@
+name: Using Actions
+
+env:
+  WORK_DIR: my-app
+  NODE_VERSION: 20.x
+
+runs:
+  using: composite
+  steps:
+    run: 
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{env.NODE_VERSION}}
+
+      - name: Install Dependencies
+        working-directory: ${{env.WORK_DIR}}
+        run: npm ci
+        shell: bash
+
+      - name: Run Unit Tests
+        working-directory: ${{env.WORK_DIR}}
+        run: npm run test
+        shell: bash
+
+        
