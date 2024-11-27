@@ -20,5 +20,5 @@ jobs:
       - name: Build Node
         uses: ./.github/actions/composite-deps/action.yaml
         with:
-          node-version: ${{env.NODE_VERSION}}
-          working-directory: ${{env.WORK_DIR}}
+          NODE_VERSION: ${{env.NODE_VERSION}}
+          WORK_DIR: ${{env.WORK_DIR}}
